@@ -42,4 +42,11 @@
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<None Remove="Resources\Fonts\fa_solid.ttf" />
+	</ItemGroup>
+	<ItemGroup>
+		<MauiFont Include="Resources\Styles\IconFont.cs" />
+	</ItemGroup>
+
 </Project>
