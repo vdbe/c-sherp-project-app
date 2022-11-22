@@ -5,6 +5,21 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:c_sherp_project_app">
 
+    <FontImage x:Key="IconRock"
+        FontFamily="FontAwesome"
+        Size="22"
+        Color="{StaticResource Primary}"
+        Glyph="{x:Static local:IconFont.HandRock}"/>
+    <FontImage x:Key="IconPaper"
+        FontFamily="FontAwesome"
+        Size="22"
+        Color="{StaticResource Primary}"
+        Glyph="{x:Static local:IconFont.HandPaper}"/>
+    <FontImage x:Key="IconScissors"
+        FontFamily="FontAwesome"
+        Size="22"
+        Color="{StaticResource Primary}"
+        Glyph="{x:Static local:IconFont.HandScissors}"/>
     <FontImage x:Key="IconOne"
         FontFamily="FontAwesome"
         Size="22"

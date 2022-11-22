@@ -34,6 +34,9 @@
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
 		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
+		<MauiImage Update="Resources\Images\icon_paper.svg" BaseSize="122,147" />
+		<MauiImage Update="Resources\Images\icon_rock.svg" BaseSize="147,147" />
+		<MauiImage Update="Resources\Images\icon_scissors.svg" BaseSize="135,153" />
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
@@ -48,5 +51,5 @@
 	<ItemGroup>
 		<MauiFont Include="Resources\Styles\IconFont.cs" />
 	</ItemGroup>
-
+	
 </Project>

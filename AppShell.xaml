@@ -10,7 +10,7 @@
         <Tab Title="One" Icon="{StaticResource IconOne}">
             <ShellContent
                 Title="One"
-                ContentTemplate="{DataTemplate local:MainPage}"
+                ContentTemplate="{DataTemplate local:PlayPage}"
                 Route="OnePage" /> 
         </Tab>
         <Tab Title="Two" Icon="{StaticResource IconTwo}">
