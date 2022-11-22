@@ -1,4 +1,5 @@
-﻿namespace c_sherp_project_app;
+﻿using c_sherp_project_app.Storage;
+namespace c_sherp_project_app;
 
 public static class MauiProgram
 {
@@ -13,6 +14,9 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 				fonts.AddFont("fa_solid.ttf", "FontAwesome");
 			});
+
+		builder.Services.AddSingleton<AppDatabase>(s => ActivatorUtilities.CreateInstance<AppDatabase>(s));
+
 
 		return builder.Build();
 	}
