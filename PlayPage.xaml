@@ -7,11 +7,20 @@
         <!-- NOTE: Still a small cutoff at the top of each image -->
         <FlexLayout Direction="Column" AlignItems="Center">
             <Label FlexLayout.Basis="5%" Text="" />
-            <Image FlexLayout.Grow="1" Source="icon_rock.png" Aspect="AspectFill" />
+            <ImageButton Source="icon_rock.png"
+                         Clicked="OnRockClicked"
+                         FlexLayout.Grow="1"
+                         Aspect="AspectFill" />
             <Label FlexLayout.Basis="10%" Text="" />
-            <Image FlexLayout.Grow="1" Source="icon_paper.png" Aspect="AspectFill" />
+            <ImageButton Source="icon_paper.png"
+                         Clicked="OnPaperClicked"
+                         FlexLayout.Grow="1"
+                         Aspect="AspectFill" />
             <Label FlexLayout.Basis="10%" Text="" />
-            <Image FlexLayout.Grow="1" Source="icon_scissors.png" Aspect="AspectFill" />
+            <ImageButton Source="icon_scissors.png"
+                         Clicked="OnScissorsClicked"
+                         FlexLayout.Grow="1"
+                         Aspect="AspectFill" />
             <Label FlexLayout.Basis="5%" Text="" />
         </FlexLayout>
 
