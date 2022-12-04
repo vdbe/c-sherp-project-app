@@ -2,12 +2,12 @@ using SQLite;
 
 namespace c_sherp_project_app.Models;
 
-[Table("api_identifier")]
-public class ApiIdentifier
+[Table("game_identifier")]
+public class GameIdentifier
 {
     [PrimaryKey, AutoIncrement]
     public int Id { get; set; }
 
-    [MaxLength(250), Unique]
-    public string Identifier { get; set; }
+    [Unique]
+    public Guid Guid { get; set; }
 }

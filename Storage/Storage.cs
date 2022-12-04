@@ -38,11 +38,11 @@ public class AppDatabase
             return;
 
         _conn = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
-        //var result = await Database.CreateTableAsync<ApiIdentifier>();
-        await _conn.CreateTableAsync<ApiIdentifier>();
+        //var result = await Database.CreateTableAsync<GameIdentifier>();
+        await _conn.CreateTableAsync<GameIdentifier>();
     }
 
-    public async Task<int> SetApiIdentifierAsync(ApiIdentifier apiIdentifier)
+    public async Task<int> SetGameIdentifierAsync(GameIdentifier apiIdentifier)
     {
         await Init();
         if (apiIdentifier.Id != 0)
@@ -51,41 +51,22 @@ public class AppDatabase
             return await _conn.InsertAsync(apiIdentifier);
     }
 
-    #nullable enable
-    public async Task<ApiIdentifier?> GetApiIdentifierAsync(int id)
+    public async Task<GameIdentifier> GetGameIdentifierAsync(int id)
     {
         await Init();
-        var search =  _conn.Table<ApiIdentifier>().Where(i => i.Id == id);
+        var search =  _conn.Table<GameIdentifier>().Where(i => i.Id == id);
         int count = await search.CountAsync();
 
         if( count == 0) {
-            System.Console.WriteLine("Return null");
-            return new ApiIdentifier{Id = 0, Identifier = ""};
+            return null;
         }
 
-        System.Console.WriteLine("Return object");
         return await search.FirstAsync();
     }
-    #nullable disable
 
-    public async Task<int> DeleteApiIdentifierAsync(ApiIdentifier apiIdentifier)
+    public async Task<int> DeleteGameIdentifierAsync(GameIdentifier gameIdentifier)
     {
         await Init();
-        return await _conn.DeleteAsync(apiIdentifier);
+        return await _conn.DeleteAsync(gameIdentifier);
     }
-
-    public async Task<List<ApiIdentifier>> GetAllIdentifiers()
-        {
-            // Init then retrieve a list of Person objects from the database into a list
-            try
-            {
-                await Init();
-                return await _conn.Table<ApiIdentifier>().ToListAsync();
-            }
-            catch (Exception ex)
-            {
-            }
-
-            return new List<ApiIdentifier>();
-        }
 }

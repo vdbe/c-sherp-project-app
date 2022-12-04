@@ -1,3 +1,5 @@
+using System.Text.Json;
+
 namespace c_sherp_project_app;
 
 public partial class PlayPage : ContentPage
@@ -7,9 +9,11 @@ public partial class PlayPage : ContentPage
 		InitializeComponent();
 	}
 
-	private void OnRockClicked(object sender, EventArgs e)
+	private async void OnRockClicked(object sender, EventArgs e)
 	{
 		System.Console.WriteLine("Rock Clicked");
+		System.Console.WriteLine(await App.ApiClient.getGameGuid());
+		
 
 	}
 

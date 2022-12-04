@@ -1,23 +1,18 @@
 ﻿using c_sherp_project_app.Storage;
 using c_sherp_project_app.Models;
+using c_sherp_project_app.Services;
 
 namespace c_sherp_project_app;
 
 public partial class App : Application
 {
 
-	public static AppDatabase Database { get; private set;}
-	public App(AppDatabase database)
+	public static ApiClient ApiClient { get; private set;}
+	public App( ApiClient apiClient)
 	{
 		InitializeComponent();
 
 		MainPage = new AppShell();
-		Database = database;
-
-		try {
-			// TODO: fix
-			ApiIdentifier apiIdentifier = new ApiIdentifier{Id = 1, Identifier =  ""};
-			App.Database.SetApiIdentifierAsync(apiIdentifier).RunSynchronously();
-		} catch { }
+		ApiClient = ApiClient;
 	}
 }
