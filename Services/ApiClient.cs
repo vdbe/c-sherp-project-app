@@ -166,4 +166,22 @@ public class ApiClient {
         return leaderBoard;
     }
 
+    public async Task<List<LeaderBoard>> getLeaderBoards(int count) {
+        HttpResponseMessage result = await this.httpClient.GetAsync($"{this.apiEndpoint}/leaderboard?count={count}");
+        if (!result.IsSuccessStatusCode) {
+            // TODO: Handle error
+            System.Console.WriteLine("Error: GetLeaderBoards request failed");
+            return null;
+        }
+
+        String jsonString = await result.Content.ReadAsStringAsync();
+        var options = new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        };
+        List<LeaderBoard> lbs = JsonSerializer.Deserialize<List<LeaderBoard>>(jsonString, options);
+
+        return lbs;
+    }
+
 }
