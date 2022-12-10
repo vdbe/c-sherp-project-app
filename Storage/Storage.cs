@@ -42,13 +42,13 @@ public class AppDatabase
         await _conn.CreateTableAsync<GameIdentifier>();
     }
 
-    public async Task<int> SetGameIdentifierAsync(GameIdentifier apiIdentifier)
+    public async Task<int> SetGameIdentifierAsync(GameIdentifier gameIdentifier)
     {
         await Init();
-        if (apiIdentifier.Id != 0)
-            return await _conn.UpdateAsync(apiIdentifier);
+        if (gameIdentifier.Id != 0)
+            return await _conn.InsertOrReplaceAsync(gameIdentifier);
         else
-            return await _conn.InsertAsync(apiIdentifier);
+            return await _conn.InsertAsync(gameIdentifier);
     }
 
     public async Task<GameIdentifier> GetGameIdentifierAsync(int id)

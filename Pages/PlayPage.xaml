@@ -6,6 +6,8 @@
 
         <!-- NOTE: Still a small cutoff at the top of each image -->
         <FlexLayout Direction="Column" AlignItems="Center">
+            <Label FlexLayout.Basis="5%" Text="{Binding Score}" TextColor="{Binding TextColor}" />
+            <Label FlexLayout.Basis="10%" Text="" />
             <Label FlexLayout.Basis="5%" Text="" />
             <ImageButton Source="icon_rock.png"
                          Clicked="OnRockClicked"

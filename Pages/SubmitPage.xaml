@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:c_sherp_project_app"
+             x:Class="c_sherp_project_app.SubmitPage">
+
+        <!-- NOTE: Still a small cutoff at the top of each image -->
+        <FlexLayout Direction="Column" AlignItems="Center">
+            <Label FlexLayout.Basis="10%" Text="" />
+            <Label FlexLayout.Basis="5%" Text="{Binding Score}"/>
+            <Label FlexLayout.Basis="5%" Text="Name" />
+            <Entry x:Name="nameEntry"
+                Placeholder="Anonymous"
+                Completed="OnNameEntryCompleted" />
+                <!-- TextChanged="OnNameEntryTextChanged" -->
+            <Label FlexLayout.Basis="5%" Text="" />
+        </FlexLayout>
+
+</ContentPage>

@@ -13,6 +13,6 @@ public partial class App : Application
 		InitializeComponent();
 
 		MainPage = new AppShell();
-		ApiClient = ApiClient;
+		ApiClient = apiClient;
 	}
 }
