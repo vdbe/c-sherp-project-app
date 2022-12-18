@@ -20,13 +20,11 @@ public partial class PlayPage : ContentPage
 
     private async void OnRockClicked(object sender, EventArgs e)
     {
-        System.Console.WriteLine("Rock Clicked");
         await this.vm.Play(Choice.Rock);
     }
 
     private async void OnPaperClicked(object sender, EventArgs e)
     {
-        System.Console.WriteLine("Paper Clicked");
         await this.vm.Play(Choice.Paper);
     }
 
@@ -73,14 +71,12 @@ public class PlayPageViewModel : ViewModelBase  {
         if(this.busy == true)
             return;
         this.busy = true;
-        System.Console.WriteLine($"{choice} Clicked");
         
         PlayResult playResult = await App.ApiClient.playRound(choice);
 
         this.YourLastChoice = choice;
 
         this.score = playResult.Game.Score;
-        System.Console.WriteLine($"Score: {this.Score}");
 
         this.OpponentsLastChoice = playResult.Choice;
         this.LastResult = playResult.Result;

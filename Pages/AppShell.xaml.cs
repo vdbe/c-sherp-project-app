@@ -6,4 +6,12 @@ public partial class AppShell : Shell
 	{
 		InitializeComponent();
 	}
+
+    public void Update() {
+        Task.Run<Task>(async() => await UpdateAsync());
+    }
+
+    public async Task UpdateAsync() {
+        await App.ApiClient.getScore();
+    }
 }

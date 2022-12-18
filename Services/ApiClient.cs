@@ -36,13 +36,10 @@ public class ApiClient {
         Play play = new Play() {Choice = choice };
         var stringPayload = JsonSerializer.Serialize(play);
         StringContent content = new StringContent(stringPayload, Encoding.UTF8, "application/json");
-        System.Console.WriteLine(JsonSerializer.Serialize(content));
 
         HttpResponseMessage result = await this.httpClient.PostAsync($"{this.apiEndpoint}/game/{this.game.Guid}/play", content);
         if (!result.IsSuccessStatusCode) {
             // TODO: Handle error
-            System.Console.WriteLine(JsonSerializer.Serialize(result.StatusCode));
-            System.Console.WriteLine(await result.Content.ReadAsStringAsync());
             System.Console.WriteLine("Error: playRound request failed");
             return null;
         }
@@ -61,7 +58,6 @@ public class ApiClient {
 
     public async Task<uint> getScore() {
         Guid? gameGuid = await this.getGameGuid();
-        System.Console.WriteLine($"getScore(): gameGuid -> {gameGuid}");
 
         if (gameGuid == null) {
 
@@ -75,11 +71,7 @@ public class ApiClient {
     }
 
     private async Task<Game> createGame() {
-        System.Console.WriteLine($"createGame()");
-        HttpResponseMessage result1 = await this.httpClient.GetAsync($"https://whatthecommit.com/index.txt");
-        System.Console.WriteLine($"{this.apiEndpoint}/game");
         HttpResponseMessage result = await this.httpClient.PostAsync($"{this.apiEndpoint}/game", null);
-        System.Console.WriteLine($"createGame() request complete");
 
 
         if (!result.IsSuccessStatusCode) {
@@ -99,7 +91,6 @@ public class ApiClient {
         this.game = game;
 
 
-        System.Console.WriteLine($"createGame(): gameGuid -> {game.Guid}");
         return game;
     }
 
@@ -109,15 +100,12 @@ public class ApiClient {
 
     public async Task<Game> getGame(Guid? guid) {
         var a = JsonSerializer.Serialize(guid);
-        System.Console.WriteLine($"getGame(): gameGuid -> {a}");
-        System.Console.WriteLine(guid.HasValue);
         if (guid == null) {
             System.Console.WriteLine("Error: GetGame guid is null");
             return null;
         }
 
         HttpResponseMessage result = await this.httpClient.GetAsync($"{this.apiEndpoint}/game/{guid}");
-        System.Console.WriteLine($"{this.apiEndpoint}/game/{guid}");
         if (!result.IsSuccessStatusCode) {
             // TODO: Handle error
             System.Console.WriteLine("Error: GetGame request failed");
@@ -152,7 +140,6 @@ public class ApiClient {
 
         var stringPayload = JsonSerializer.Serialize(leaderBoardSubmission);
         StringContent content = new StringContent(stringPayload, Encoding.UTF8, "application/json");
-        System.Console.WriteLine(JsonSerializer.Serialize(content));
 
         HttpResponseMessage result = await this.httpClient.PostAsync($"{this.apiEndpoint}/leaderboard/", content);
         if (!result.IsSuccessStatusCode) {

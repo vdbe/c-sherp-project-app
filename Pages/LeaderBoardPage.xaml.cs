@@ -38,14 +38,10 @@ public class LeaderBoardPageViewModel : ViewModelBase {
     }
 
     public List<LeaderBoard> GetLeaderboard(int count) {
-        System.Console.WriteLine("GetLeaderBoard()");
         Task<List<LeaderBoard>> lbs = Task.Run<List<LeaderBoard>>(async() => await GetLeaderBoardsAsync(count));
         List<LeaderBoard> leaderBoards = lbs.Result;
         this.LeaderBoards = leaderBoards;
 
-        System.Console.WriteLine(JsonSerializer.Serialize(this.LeaderBoards));
-
-        System.Console.WriteLine("~GetLeaderBoard()");
         return leaderBoards;
     }
 
@@ -57,13 +53,9 @@ public class LeaderBoardPageViewModel : ViewModelBase {
 
     async void OnNameEntryCompleted(object sender, EventArgs e)
     {
-        System.Console.WriteLine("OnNameEntryCompleted()");
 
         Game game = App.ApiClient.getCurrentGame();
         if(game == null || game.Active == true || this.busy == true) {
-            System.Console.WriteLine(JsonSerializer.Serialize(game));
-            System.Console.WriteLine(JsonSerializer.Serialize(this.busy));
-            System.Console.WriteLine("~OnNameEntryCompleted() early");
             return;
         }
 
@@ -71,11 +63,9 @@ public class LeaderBoardPageViewModel : ViewModelBase {
 
 
         string name = ((Entry)sender).Text;
-        System.Console.WriteLine(name);
 
         await App.ApiClient.submitLeaderBoard(name);
 
         this.busy = false;
-        System.Console.WriteLine("~OnNameEntryCompleted()");
     }
 }

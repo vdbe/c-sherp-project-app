@@ -20,13 +20,9 @@ public partial class SubmitPage : ContentPage
 
     async void OnNameEntryCompleted(object sender, EventArgs e)
     {
-        System.Console.WriteLine("OnNameEntryCompleted()");
 
         Game game = App.ApiClient.getCurrentGame();
         if(game == null || game.Active == true || this.busy == true) {
-            System.Console.WriteLine(JsonSerializer.Serialize(game));
-            System.Console.WriteLine(JsonSerializer.Serialize(this.busy));
-            System.Console.WriteLine("~OnNameEntryCompleted() early");
             return;
         }
 
@@ -34,12 +30,10 @@ public partial class SubmitPage : ContentPage
 
 
         string name = ((Entry)sender).Text;
-        System.Console.WriteLine(name);
 
         await App.ApiClient.submitLeaderBoard(name);
 
         this.busy = false;
-        System.Console.WriteLine("~OnNameEntryCompleted()");
     }
 
 }
