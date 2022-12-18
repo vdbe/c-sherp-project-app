@@ -20,26 +20,21 @@
         Size="22"
         Color="{StaticResource Primary}"
         Glyph="{x:Static local:IconFont.HandScissors}"/>
-    <FontImage x:Key="IconOne"
+    <FontImage x:Key="IconPlay"
         FontFamily="FontAwesome"
         Size="22"
         Color="{StaticResource Primary}"
-        Glyph="{x:Static local:IconFont.DiceOne}"/>
-    <FontImage x:Key="IconTwo"
+        Glyph="{x:Static local:IconFont.Gamepad}"/>
+    <FontImage x:Key="IconSubmit"
         FontFamily="FontAwesome"
         Size="22"
         Color="{StaticResource Primary}"
-        Glyph="{x:Static local:IconFont.DiceTwo}"/>
-    <FontImage x:Key="IconThree"
+        Glyph="{x:Static local:IconFont.PaperPlane}"/>
+    <FontImage x:Key="IconLeaderboard"
         FontFamily="FontAwesome"
         Size="22"
         Color="{StaticResource Primary}"
-        Glyph="{x:Static local:IconFont.DiceThree}"/>
-    <FontImage x:Key="IconFour"
-        FontFamily="FontAwesome"
-        Size="22"
-        Color="{StaticResource Primary}"
-        Glyph="{x:Static local:IconFont.DiceFour}"/>
+        Glyph="{x:Static local:IconFont.Medal}"/>
 
     <Style TargetType="ActivityIndicator">
         <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />

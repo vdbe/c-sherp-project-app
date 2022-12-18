@@ -7,19 +7,19 @@
     Shell.FlyoutBehavior="Disabled">
 
     <TabBar>
-        <Tab Title="Play" Icon="{StaticResource IconOne}">
+        <Tab Title="Play" Icon="{StaticResource IconPlay}">
             <ShellContent
                 Title="Play"
                 ContentTemplate="{DataTemplate local:PlayPage}"
                 Route="PlayPage" /> 
         </Tab>
-        <Tab Title="Submit" Icon="{StaticResource IconTwo}">
+        <Tab Title="Submit" Icon="{StaticResource IconSubmit}">
             <ShellContent
                 Title="Submit"
                 ContentTemplate="{DataTemplate local:SubmitPage}"
                 Route="SubmitPage" />
         </Tab>
-        <Tab Title="Leaderboard" Icon="{StaticResource IconThree}">
+        <Tab Title="Leaderboard" Icon="{StaticResource IconLeaderboard}">
             <ShellContent
                 Title="Leaderboard"
                 ContentTemplate="{DataTemplate local:LeaderBoardPage}"
