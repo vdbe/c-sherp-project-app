@@ -9,6 +9,20 @@ namespace c_sherp_project_app;
 public partial class LeaderBoardPage : ContentPage, INotifyPropertyChanged
 {
 
+    LeaderBoardPageViewModel vm;
+    public LeaderBoardPage()
+    {
+        InitializeComponent();
+
+        BindingContext = vm = new LeaderBoardPageViewModel();
+
+        this.vm.GetLeaderboard(100);
+    }
+
+}
+
+public class LeaderBoardPageViewModel : ViewModelBase {
+
     // Because api is slow and can't be bothered to find how to disable button's
     private bool busy = false;
 
@@ -21,22 +35,6 @@ public partial class LeaderBoardPage : ContentPage, INotifyPropertyChanged
             OnPropertyChanged();
         }
 
-    }
-
-    public event PropertyChangedEventHandler PropertyChanged;
-    protected void OnPropertyChanged([CallerMemberName] string name = null)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-    }
-
-    public LeaderBoardPage()
-    {
-        InitializeComponent();
-
-        this.GetLeaderboard(100);
-
-
-        BindingContext = this;
     }
 
     public List<LeaderBoard> GetLeaderboard(int count) {
@@ -54,6 +52,8 @@ public partial class LeaderBoardPage : ContentPage, INotifyPropertyChanged
     public async Task<List<LeaderBoard>> GetLeaderBoardsAsync(int count) {
         return await App.ApiClient.getLeaderBoards(count);
     }
+
+
 
     async void OnNameEntryCompleted(object sender, EventArgs e)
     {
@@ -78,6 +78,4 @@ public partial class LeaderBoardPage : ContentPage, INotifyPropertyChanged
         this.busy = false;
         System.Console.WriteLine("~OnNameEntryCompleted()");
     }
-
 }
-

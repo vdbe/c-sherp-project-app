@@ -6,17 +6,49 @@ using Microsoft.Maui.Graphics;
 
 namespace c_sherp_project_app;
 
-public partial class PlayPage : ContentPage, INotifyPropertyChanged
+
+public partial class PlayPage : ContentPage
 {
-    private uint score = 0;
-    public uint Score
+    PlayPageViewModel vm;
+
+    public PlayPage()
     {
-        get { return score; }
-        set
-        {
-            score = value;
-            OnPropertyChanged();
-        }
+        InitializeComponent();
+
+        BindingContext = vm = new PlayPageViewModel();
+    }
+
+    private async void OnRockClicked(object sender, EventArgs e)
+    {
+        System.Console.WriteLine("Rock Clicked");
+        await this.vm.Play(Choice.Rock);
+    }
+
+    private async void OnPaperClicked(object sender, EventArgs e)
+    {
+        System.Console.WriteLine("Paper Clicked");
+        await this.vm.Play(Choice.Paper);
+    }
+
+    private async void OnScissorsClicked(object sender, EventArgs e)
+    {
+        await this.vm.Play(Choice.Scissors);
+    }
+
+}
+
+
+public class PlayPageViewModel : ViewModelBase  {
+    private uint score = 0;
+    public String Score
+    {
+        get { 
+
+            if (this.LastResult == Result.Loss) {
+                return $"You lost, final score: {this.score}";
+            }
+            else return $"Score: {this.score}";
+         }
     }
 
     // TODO: This binding does not work don't ask me why
@@ -36,37 +68,7 @@ public partial class PlayPage : ContentPage, INotifyPropertyChanged
     public Choice? YourLastChoice = null;
     public Result? LastResult = null;
 
-    public event PropertyChangedEventHandler PropertyChanged;
-    protected void OnPropertyChanged([CallerMemberName] string name = null)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-    }
-
-    public PlayPage()
-    {
-        InitializeComponent();
-
-        BindingContext = this;
-    }
-
-    private async void OnRockClicked(object sender, EventArgs e)
-    {
-        System.Console.WriteLine("Rock Clicked");
-        await this.Play(Choice.Rock);
-    }
-
-    private async void OnPaperClicked(object sender, EventArgs e)
-    {
-        System.Console.WriteLine("Paper Clicked");
-        await this.Play(Choice.Paper);
-    }
-
-    private async void OnScissorsClicked(object sender, EventArgs e)
-    {
-        await this.Play(Choice.Scissors);
-    }
-
-    private async Task Play(Choice choice)
+    public async Task Play(Choice choice)
     {
         if(this.busy == true)
             return;
@@ -77,7 +79,9 @@ public partial class PlayPage : ContentPage, INotifyPropertyChanged
 
         this.YourLastChoice = choice;
 
-        this.Score = playResult.Game.Score;
+        this.score = playResult.Game.Score;
+        System.Console.WriteLine($"Score: {this.Score}");
+
         this.OpponentsLastChoice = playResult.Choice;
         this.LastResult = playResult.Result;
 
@@ -87,7 +91,7 @@ public partial class PlayPage : ContentPage, INotifyPropertyChanged
             this.TextColor = "White";
         }
 
+        OnPropertyChanged(nameof(this.Score));
         this.busy = false;
     }
 }
-

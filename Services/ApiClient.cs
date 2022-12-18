@@ -10,7 +10,7 @@ namespace c_sherp_project_app.Services;
 public class ApiClient {
 
     private AppDatabase appDatabase;
-    private String apiEndpoint = "https://c-sherp-api.ewood.dev/rps";
+    private String apiEndpoint = "https://pain.ewood.dev/rps";
 
     private Game game = null;
 
@@ -76,10 +76,15 @@ public class ApiClient {
 
     private async Task<Game> createGame() {
         System.Console.WriteLine($"createGame()");
+        HttpResponseMessage result1 = await this.httpClient.GetAsync($"https://whatthecommit.com/index.txt");
+        System.Console.WriteLine($"{this.apiEndpoint}/game");
         HttpResponseMessage result = await this.httpClient.PostAsync($"{this.apiEndpoint}/game", null);
+        System.Console.WriteLine($"createGame() request complete");
+
+
         if (!result.IsSuccessStatusCode) {
             // TODO: Handle error
-            System.Console.WriteLine("Error: CreateGame request failed");
+            System.Console.WriteLine($"Error: CreateGame request failed -> ${result.StatusCode}");
             return null;
         }
 
